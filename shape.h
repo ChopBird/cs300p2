@@ -19,7 +19,7 @@ void setColor (std::string color);
 
 virtual void draw(GWindow & gw) = 0;
 
-virtual bool contains(double x, double y);
+virtual bool contains(voiddouble x, double y);
 
 protected:
 

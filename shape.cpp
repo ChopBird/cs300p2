@@ -1,5 +1,6 @@
 #include <string>
 #include "shape.h"
+#include <math.h>
 #include "gwindow.h"
 using namespace std;
 
@@ -36,7 +37,23 @@ gw.drawLine(x,y,x+dx,y+dy);
 }
 
 bool Line::contains(double x, double y){
+    double x1 = this->x;
+    double y1 = this->y;
+    double x2 = this->x + dx;
+    double y2 = this->y + dy;
+    //return true if point is within .5px of endpoints
+    double dist1 = sqrt((pow(x-x1,2))+(pow(y-y1,2)));
+    double dist2 = sqrt((pow(x-x2,2))+(pow(y-y2,2)));
+
+    if (dist1<=.5||dist2 <=5) return true
     
+    //return true if point is within .5 of the line
+    double disttotal = dist1+dist2 
+    if (disttotal <= sqrt(pow(dx,2)+pow(dy,2)) + .5)return true
+
+    return false;
+    //is the geometry wrong on this idk
+
 }
 
 //Rect
@@ -51,6 +68,16 @@ void Rect::draw(GWindow & gw){
     gw.setColor(color);
     gw.fillRect(x,y,width,height);
 }
+bool Rect::contains(double x,double y){
+double x1 = this-> x;
+double y1 = this->y;
+double y2 = this->y + height;
+double x2 = this->x + width;
+
+if (x<x2 && x>x1 && y >y1 && y < y2) return true;
+return false;
+}
+
 
 Square::Square(double x, double y, double length)
     :Rect(x,y,length,length);
