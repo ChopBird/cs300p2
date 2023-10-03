@@ -21,6 +21,8 @@ void Shape::setColor(string color){
     this->color = color;
 }
 
+void virtual Shape::contains(double x, double y);
+
 //Line 
 
 Line::Line(double x1,double y1,, double x2, double y2){
@@ -92,6 +94,11 @@ Oval::Oval(double x,double y, double width, double height){
 void Oval::draw(GWindow & gw){
     gw.setColor(color);
     gw.fillOval(x,y,width,height);
+
+}
+
+bool Oval::contains(double x,double y){
+return (pow(x-this->x,2)/pow(width,2)) + pow(y-this->y,2)/pow(height,2) <=1;
 
 }
 
